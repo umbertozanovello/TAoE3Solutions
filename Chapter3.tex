@@ -1,0 +1,32 @@
+\chapter{Solutions for Chapter 3}
+
+\ex{3.1}
+\begin{circuit}{fig:3.1.1}{JFET current source}
+    (0,0) node[njfet] (Q1) {$Q_1$}
+    (Q1.D) to[generic, l=load] ++(0,2)
+    (Q1.S) to[R, l=$R_\text{S}$] ++(0,-2) coordinate(RS)
+    node[ground] {}
+    (RS) to[short] (RS-|Q1.G)
+    (Q1.G) to[short] (Q1.G|-RS)
+
+\end{circuit}
+
+From Figure 3.21 of the book, one can see that a drain current equal to \SI{1}{\milli\ampere} corresponds to a gate-source voltage of \SI{-0.6}{\volt}.
+Therefore:
+\[\mans{R_\text{S}=\frac{\SI{0.6}{\volt}}{\SI{1}{\milli\ampere}}=\SI{600}{\ohm}}\]
+\todoex{3.3}
+\todoex{3.4}
+\todoex{3.5}
+\todoex{3.6}
+\todoex{3.7}
+\todoex{3.8}
+\todoex{3.9}
+\todoex{3.10}
+\todoex{3.11}
+\todoex{3.12}
+\todoex{3.13}
+\todoex{3.14}
+\todoex{3.15}
+\todoex{3.16}
+\todoex{3.17}
+\todoex{3.18}

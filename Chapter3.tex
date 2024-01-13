@@ -14,7 +14,18 @@
 From Figure 3.21 of the book, one can see that a drain current equal to \SI{1}{\milli\ampere} corresponds to a gate-source voltage of \SI{-0.6}{\volt}.
 Therefore:
 \[\mans{R_\text{S}=\frac{\SI{0.6}{\volt}}{\SI{1}{\milli\ampere}}=\SI{600}{\ohm}}\]
-\todoex{3.3}
+
+\ex{3.2}
+At $V_\text{GS}=V_\text{G0}$:
+\[r_\text{GS}=r_\text{G0}=\frac{1}{2k\left(V_\text{G0}-V_\text{th}\right)}\]
+The ratio between $r_\text{DS}$ and $R_\text{G0}$ returns:
+\[\mans{\frac{r_\text{DS}}{r_\text{G0}}=\frac{2k\left(V_\text{G0}-V_\text{th}\right)}{2k\left(V_\text{GS}-V_\text{th}\right)}}\]
+
+\ex{3.3}
+Being $g_\text{m}$ the differential conductance of the FET operated in aturation region, it can be expressed as:
+\[g_\text{m}=\frac{\partial I_\text{D}}{\partial V_\text{GS}}=\frac{\partial}{\partial V_\text{GS}}k\left(V_\text{GS}-V_\text{th}\right)^2=2k\left(V_\text{GS}-V_\text{th}\right)\]
+Therefore:
+\[\mans{g_\text{m}=\frac{1}{r_\text{DS}}}\]
 \todoex{3.4}
 \todoex{3.5}
 \todoex{3.6}

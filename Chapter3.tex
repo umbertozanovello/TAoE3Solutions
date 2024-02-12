@@ -8,7 +8,6 @@
     node[ground] {}
     (RS) to[short] (RS-|Q1.G)
     (Q1.G) to[short] (Q1.G|-RS)
-
 \end{circuit}
 
 From Figure 3.21 of the book, one can see that a drain current equal to \SI{1}{\milli\ampere} corresponds to a gate-source voltage of \SI{-0.6}{\volt}.
@@ -34,10 +33,122 @@ Therefore:
     \item Since the current is equal to the charge over time, we have:
     \[\mans{t_\text{ON}=\frac{\SI{40}{\nano\coulomb}}{\SI{1}{\milli\ampere}}=\SI{40}{\micro\second}}\]
 \end{enumerate}
-\todoex{3.5}
-\todoex{3.6}
-\todoex{3.7}
-\todoex{3.8}
+
+\ex{3.5}
+The \SI{1}{\pico\farad} drain-source capacitance happens to be in series with the \SI{10}{\kilo\ohm} load resistance. The capacitive reactance is:
+\[X_\text{DS}=\frac{1}{2\pi\SI{1}{\mega\hertz}\,\SI{1}{\pico\farad}}=\SI{160}{\kilo\ohm}\]
+Therefore, the feedthrough is given by:
+\[\mans{20\log_{10}\frac{\SI{10}{\kilo\ohm}}{\SI{10}{\kilo\ohm}+\SI{160}{\kilo\ohm}}=\SI{-25}{\decibel}}\]
+
+\ex{3.6}
+In this case, the output \SI{10}{\kilo\ohm} resistance is in parallel with the \SI{50}{\ohm} $R_\text{ON}$ resistance. Their equivalent resistance is about \SI{50}{\ohm}. Similarly to the previous exercise, the feedthorugh is given by:
+\[\mans{20\log_{10}\frac{\SI{50}{\ohm}}{\SI{50}{\ohm}+\SI{160}{\kilo\ohm}}=\SI{-70}{\decibel}}\]
+
+\ex{3.7}
+\begin{circuit}{fig:3.7.1}{Zero ohm $R_\text{ON}$}
+    (0,0) node[ocirc] {}
+    node[above] {in}
+    (0,0) to[R,l=$R_\text{S}$] ++(2,0) coordinate(Rs)
+    to[C,l=$C_\text{D}$] ++(0,-2)
+    node[ground] {}
+    (Rs) -- ++(2,0) coordinate(out)
+    to[C,l=$C_\text{S}$] ++(0,-2) 
+    node[ground] {}
+    (out) -- ++(1,0)
+    node[ocirc] {}
+    node[above] {out}
+\end{circuit}
+
+\begin{circuit}{fig:3.7.2}{\SI{75}{\ohm} $R_\text{ON}$}
+    (0,0) node[ocirc] {}
+    node[above] {in}
+    (0,0) to[short] ++(1,0) coordinate(Rs)
+    to[C,l=$C_\text{D}$] ++(0,-2)
+    node[ground] {}
+    (Rs) to[R,l=$R_\text{ON}$] ++(2.5,0) coordinate(out)
+    to[C,l=$C_\text{S}$] ++(0,-2) 
+    node[ground] {}
+    (out) -- ++(1,0)
+    node[ocirc] {}
+    node[above] {out}
+\end{circuit}
+
+For this exercise we assume that the load resistance of \SI{100}{\kilo\ohm} does not load the circuit. 
+\begin{enumerate}
+    \item The circuit is that of Figure \ref{fig:3.7.1}. Since $C_\text{D}=C_\text{S}=C_\text{T}=\SI{8}{\pico\farad}$, there is a single pole at the frequency $f_\text{p}$:
+    \[\mans{f_\text{p}=\frac{1}{4\pi R_\text{S}C_\text{T}}\approx\SI{1}{\mega\hertz}}\]
+    \item In this case the circuit is depicted in Figure \ref{fig:3.7.2}. The circuit has one pole at DC and another pole at $f_\text{p}$:
+    \[\mans{f_\text{p}=\frac{1}{2\pi R_\text{ON}C_\text{T}}\approx\SI{265}{\mega\hertz}}\]
+\end{enumerate}
+
+\ex{3.8}
+\begin{circuit}{fig:3.8.1}{OFF-OFF}
+    (0,0) node[ocirc] {}
+    node[above] {in}
+    (0,0) to[R,l=$R_\text{S}$] ++(2,0) coordinate(Rs)
+    to[C,l_=$C_\text{C}$] ++(0,-2)
+    to[C,l=$C_\text{DS}$] ++(2,0)
+    (Rs) to[C,l=$C_\text{DS}$] ++(2,0)
+    to[C,l=$C_\text{C}$] ++(0,-2) 
+    -- ++(1,0)
+    node[ocirc] {}
+    node[above] {out}
+    to[R,l=$R_\text{out}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
+\begin{circuit}{fig:3.8.2}{OFF-ON}
+    (0,0) node[ocirc] {}
+    node[above] {in}
+    (0,0) to[R,l=$R_\text{S}$] ++(2,0) coordinate(Rs)
+    to[C,l_=$C_\text{C}$] ++(0,-2)
+    to[short] ++(2,0)
+    (Rs) to[C,l=$C_\text{DS}$] ++(2,0)
+    to[C,l=$C_\text{C}$] ++(0,-2) 
+    -- ++(1,0)
+    node[ocirc] {}
+    node[above] {out}
+    to[R,l=$R_\text{out}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
+\begin{circuit}{fig:3.8.3}{ON-OFF}
+    (0,0) node[ocirc] {}
+    node[above] {in}
+    (0,0) to[R,l=$R_\text{S}$] ++(2,0) coordinate(Rs)
+    to[C,l_=$C_\text{C}$] ++(0,-2)
+    to[C,l=$C_\text{DS}$] ++(2,0)
+    (Rs) to[short] ++(2,0)
+    to[C,l=$C_\text{C}$] ++(0,-2) 
+    -- ++(1,0)
+    node[ocirc] {}
+    node[above] {out}
+    to[R,l=$R_\text{out}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
+\begin{circuit}{fig:3.8.4}{ON-ON}
+    (0,0) node[ocirc] {}
+    node[above] {in}
+    (0,0) to[R,l=$R_\text{S}$] ++(2,0) coordinate(Rs)
+    to[C,l_=$C_\text{C}$] ++(0,-2)
+    to[short] ++(2,0)
+    (Rs) to[short] ++(2,0)
+    to[C,l=$C_\text{C}$] ++(0,-2) 
+    -- ++(1,0)
+    node[ocirc] {}
+    node[above] {out}
+    to[R,l=$R_\text{out}$] ++(0,-2)
+    node[ground] {}
+\end{circuit}
+
+\begin{enumerate}
+\item In this case the reference circuit is depicted in Figure \ref{fig:3.8.1}. The cross-coupling is given by:
+\[\mans{20\log_{10}\frac{R_\text{out}}{R_\text{out}+R_\text{S}+0.5(X_\text{C}+X_\text{DS})}=\SI{-10.75}{\decibel}}\]
+being $X_\text{C}=\frac{1}{2\pi f\,C_\text{C}}=\SI{320}{\kilo\ohm}$ and $X_\text{DS}=\frac{1}{2\pi f\,C_\text{DS}}=\SI{160}{\kilo\ohm}$
+\item In this case the reference circuit is depicted in Figure \ref{fig:3.8.2}. The cross-coupling is given by:
+\[\mans{20\log_{10}\frac{R_\text{out}}{R_\text{out}+R_\text{S}+\frac{X_\text{C}(X_\text{C}+X_\text{DS})}{2X_\text{C}+X_\text{DS}}}=\SI{-9.6}{\decibel}}\]
+\item In this case the reference circuit is depicted in Figure \ref{fig:3.8.3}. The cross-coupling is the same as before
+\item In this case the reference circuit is depicted in Figure \ref{fig:3.8.4}. The cross-coupling is given by:
+\[\mans{20\log_{10}\frac{R_\text{out}}{R_\text{out}+R_\text{S}+0.5X_\text{C}}=\SI{-8.6}{\decibel}}\]
+\end{enumerate}
 \todoex{3.9}
 \todoex{3.10}
 \todoex{3.11}

@@ -149,8 +149,19 @@ being $X_\text{C}=\frac{1}{2\pi f\,C_\text{C}}=\SI{320}{\kilo\ohm}$ and $X_\text
 \item In this case the reference circuit is depicted in Figure \ref{fig:3.8.4}. The cross-coupling is given by:
 \[\mans{20\log_{10}\frac{R_\text{out}}{R_\text{out}+R_\text{S}+0.5X_\text{C}}=\SI{-8.6}{\decibel}}\]
 \end{enumerate}
-\todoex{3.9}
-\todoex{3.10}
+
+\ex{3.9}
+\begin{enumerate}
+    \item Considering the different combinations of resistors, the \SI{-3}{\decibel} frequencies can be computed as:
+    \[\mans{f_\text{3dB,n}=\frac{n\,G_\text{10k}}{2\pi C}\quad n=1\dots 15}\]
+    where $C=\SI{0.01}{\micro\farad}$ and $G_\text{10k}=\SI{0.1}{\milli\siemens}$
+    \item The glitch amplitude voltage can be computed as:
+    \[\mans{\Delta V=\frac{\SI{20}{\pico\coulomb}}{C}=\SI{2}{\milli\volt}}\]
+\end{enumerate}
+
+\ex{3.10}
+The peak output current that the buffer has to provide can be given as the peak time derivative of the output voltage across the \SI{10}{\nano\farad} capacitor multiplied by its value:
+\[\mans{I_\text{p}=\left.\SI{10}{\nano\farad}\frac{dV}{dt}\right|_\text{p}=\SI{10}{\nano\farad}\,2\pi\SI{10}{\kilo\hertz}\,\SI{1}{\volt}=\SI{0.6}{\milli\ampere}}\]
 \todoex{3.11}
 \todoex{3.12}
 \todoex{3.13}

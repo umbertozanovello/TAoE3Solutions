@@ -162,11 +162,145 @@ being $X_\text{C}=\frac{1}{2\pi f\,C_\text{C}}=\SI{320}{\kilo\ohm}$ and $X_\text
 \ex{3.10}
 The peak output current that the buffer has to provide can be given as the peak time derivative of the output voltage across the \SI{10}{\nano\farad} capacitor multiplied by its value:
 \[\mans{I_\text{p}=\left.\SI{10}{\nano\farad}\frac{dV}{dt}\right|_\text{p}=\SI{10}{\nano\farad}\,2\pi\SI{10}{\kilo\hertz}\,\SI{1}{\volt}=\SI{0.6}{\milli\ampere}}\]
-\todoex{3.11}
-\todoex{3.12}
-\todoex{3.13}
-\todoex{3.14}
-\todoex{3.15}
+
+\ex{3.11}
+\begin{circuit}{fig:3.11.1}{BJT-based inverter logic circuit}
+    (0,0) node[npn] (Q1) {$Q_1$}
+    (Q1.C) -- ++(0,0.5)
+    node[pnp, anchor=C] (Q2) {$Q_2$}
+    (Q2.E) -- ++(-0.5,0) -- ++(1,0)
+    node[above] {$V_\text{cc}$}
+    (Q1.B) to[short] (Q2.B)
+    ($(Q1.B)!0.5!(Q2.B)$) to[short] ++(-0.5,0)
+    node[ocirc] {}
+    node[above] {in}
+    ($(Q1.C)!0.5!(Q2.C)$) to[short] ++(0.5,0)
+    node[ocirc] {}
+    node[above] {out}
+    (Q1.E) node[ground] {}
+\end{circuit}
+
+The circuit of Figure \ref{fig:3.11.1} represents the complementary bjt inverter. It's easy to see that without a proper bias, if the input is grounder (low level) the $V_\text{BE}$ of the pnp transistor is equal to $V_\text{cc}$ which is likely to damage the transistor in a very short time
+
+\ex{3.12}
+\begin{circuit}{fig:3.12.1}{Logic AND symbols}
+    (0,0) node[nand port] (nand) {}
+    node[not port, anchor=in] (not) {}
+    (nand.in 1) node[above] {a}
+    (nand.in 2) node[above] {b}
+    (not.out) node[above] {out}
+\end{circuit}
+
+\begin{circuit}{fig:3.12.2}{Logic AND symbol and circuit}
+    (0,0) node[nmos] (Q1) {$Q_1$}
+    (Q1.D) -- ++(0,0.5)
+    node[pmos, anchor=D] (Q2) {$Q_2$}
+    (Q2.S) -- ++(-0.5,0) -- ++(1,0)
+    node[above] {$V_\text{dd}$}
+    (Q1.G) to[short] (Q2.G)
+    ($(Q1.B)!0.5!(Q2.B)$) to[short] ++(-0.5,0) coordinate(NOT_IN)
+    node[ocirc] {}
+    ($(Q1.D)!0.5!(Q2.D)$) to[short] ++(0.5,0)
+    node[ocirc] {}
+    node[above] {out}
+    (Q1.S) node[ground] {}
+    (NOT_IN) node[nand port, anchor=out] (nand) {}
+    (nand.in 1) node[above] {a}
+    (nand.in 2) node[above] {b}
+\end{circuit}
+In order to transform a NAND port into an AND port, we can use a NOT port as shown in Figures \ref{fig:3.12.1} and \ref{fig:3.12.2}
+
+\ex{3.13}
+\begin{circuit}{fig:3.13.1}{NOR circuit}
+    (0,0) node[nmos] (Q1) {$Q_1$}
+    (Q1.D) -- ++(0,0.5) coordinate(A)
+    -- ++(2,0) coordinate(B)
+    -- ++(0,-0.5) 
+    node[nmos, anchor=D, xscale=-1] (Q2) {\ctikzflipx{$Q_2$}}
+    (Q1.S) to[short] (Q2.S)
+    ($(Q1.S)!0.5!(Q2.S)$) to[short] ++(0,-0.5)
+    node[ground] {}
+    ($(A)!0.5!(B)$) to[short] ++(0,0.5)
+    node[pmos, anchor=D] (Q3) {$Q_3$}
+    (Q3.S) node[pmos, anchor=D, xscale=-1] (Q4) {\ctikzflipx{$Q_4$}}
+    (Q4.S) ++(-0.5,0) -- ++(1,0)
+    node[above] {$V_\text{DD}$}
+    (Q1.G) to[short] (Q1.G |- Q3.G) coordinate(C)
+    to[short] (Q3.G)
+    ($(Q1.G)!0.5!(C)$) to[short] ++(-0.5,0)
+    node[ocirc] {}
+    node[above] {a}
+    (Q2.G) to[short] (Q2.G |- Q4.G) coordinate(D)
+    to[short] (Q4.G)
+    ($(Q2.G)!0.5!(D)$) to[short] ++(0.5,0)
+    node[ocirc] {}
+    node[above] {b}
+    (Q3.D) to[short] ++(0.5,0)
+    node[ocirc] {}
+    node[above] {out}
+\end{circuit}
+
+The solution is presented in Figure \ref{fig:3.13.1}
+
+\ex{3.14}
+\begin{circuit}{fig:3.14.1}{Logic OR symbols}
+    (0,0) node[nor port] (nor) {}
+    node[not port, anchor=in] (not) {}
+    (nor.in 1) node[above] {a}
+    (nor.in 2) node[above] {b}
+    (not.out) node[above] {out}
+\end{circuit}
+
+The OR circuit can be easily obtained by cascading a NOT circuit to the NOR circuit designed in exercise 3.13.
+
+\ex{3.15}
+\begin{circuit}{fig:3.15.1}{Three ports NAND circuit}
+    (0,0) node[pmos] (Q1) {$Q_1$}
+    (2,0) node[pmos] (Q2) {$Q_2$}
+    (4,0) node[pmos] (Q3) {$Q_3$}
+    (Q1.S) ++(-0.5,0) -- (Q3.S) -- ++(0.5,0)
+    node[above] {$V_\text{DD}$}
+    (Q1.D) to[short,*-*] (Q2.D)
+    (Q2.D) to[short,*-*] (Q3.D)
+    (Q3.D) to[short] ++(0,-0.5)
+    node[nmos, anchor=D] (Q4) {$Q_4$}
+    (Q4.S) node[nmos, anchor=D] (Q5) {$Q_5$}
+    (Q5.S) node[nmos, anchor=D] (Q6) {$Q_6$}
+    (Q6.S) node[ground] {}
+    (Q1.G) to[short,-*] (Q1.G |- Q4.G)
+    ++(-0.5,0)
+    node[ocirc] {}
+    node[above] {a}
+    to[short] (Q4.G)
+    (Q2.G) to[short,-*] (Q2.G |- Q5.G)
+    ++(-0.5,0)
+    node[ocirc] {}
+    node[above] {b}
+    to[short] (Q5.G)
+    (Q3.G) to[short,-*] (Q3.G |- Q6.G)
+    ++(-0.5,0)
+    node[ocirc] {}
+    node[above] {c}
+    to[short] (Q6.G)
+    (Q4.D) to[short] ++(0.5,0)
+    node[ocirc] {}
+    node[above] {out}
+\end{circuit}
+The solution is represented in Figure \ref{fig:3.15.1}. The gate comply with the following truth table
+\begin{center}
+\begin{tabular}{c c c | c}
+    a & b & c & out \\
+    \hline
+    1 & 1 & 1 & 0 \\
+    1 & 1 & 0 & 1 \\
+    1 & 0 & 0 & 1 \\
+    1 & 0 & 1 & 1 \\
+    0 & 0 & 1 & 1 \\
+    0 & 1 & 0 & 1 \\
+    0 & 1 & 1 & 1 \\
+    0 & 0 & 0 & 1 \\
+\end{tabular}
+\end{center}
 \todoex{3.16}
 \todoex{3.17}
 \todoex{3.18}

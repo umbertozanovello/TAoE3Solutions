@@ -28,10 +28,10 @@ Therefore:
 
 \ex{3.4}
 \begin{enumerate}
-    \item The voltage across the drain-gate capacitance when the JFET is switched on ($V_\text{DS}=\SI{0}{\volt}$) is equal to \SI{50}{\volt}-\SI{10}{\volt}=\SI{40}{\volt}. Considering a maximum current across this capacitance equal to \SI{1}{\milli\ampere}:
-    \[\mans{t_\text{ON}=\frac{\SI{40}{\volt}\,\SI{200}{\pico\farad}}{\SI{1}{\milli\ampere}}=\SI{8}{\micro\second}}\]
+    \item The voltage change across the drain-gate capacitance when the JFET is switched on ($V_\text{DS}=\SI{0}{\volt}$) is equal to \SI{50}{\volt}-(\SI{0}{\volt}-\SI{10}{\volt})=\SI{60}{\volt}. Considering a maximum current across this capacitance equal to \SI{1}{\ampere}:
+    \[\mans{t_\text{ON}=\frac{\SI{60}{\volt}\,\SI{200}{\pico\farad}}{\SI{1}{\ampere}}=\SI{12}{\nano\second}}\]
     \item Since the current is equal to the charge over time, we have:
-    \[\mans{t_\text{ON}=\frac{\SI{40}{\nano\coulomb}}{\SI{1}{\milli\ampere}}=\SI{40}{\micro\second}}\]
+    \[\mans{t_\text{ON}=\frac{\SI{40}{\nano\coulomb}}{\SI{1}{\ampere}}=\SI{40}{\nano\second}}\]
 \end{enumerate}
 
 \ex{3.5}
@@ -301,6 +301,7 @@ The solution is represented in Figure \ref{fig:3.15.1}. The gate comply with the
     0 & 0 & 0 & 1 \\
 \end{tabular}
 \end{center}
+
 \todoex{3.16}
 \todoex{3.17}
 \todoex{3.18}

@@ -345,4 +345,6 @@ Finally, from the datasheet of the FQP9P25 MOSFET, for a single \SI{10}{\milli\s
 However, if we account for a continous \SI{10}{\milli\second} pulse with \num{0.5} duty cycle, the tehermal impedance from junction to case becomes equal to \SI{0.5}{\celsius\per\watt}. If we neglect the case thermal capacitance, the  junction temperature increase will be equal to:
 \[\Delta T^\text{Q2}= (\SI{0.5}{\celsius\per\watt}+\SI{1.04}{\celsius\per\watt})\,\SI{155}{\milli\watt}=\SI{0.24}{\celsius}\]
 where \SI{1.04}{\celsius\per\watt} is the thermal resistance from case to ambient as given in the datasheet.
-\todoex{3.18}
+
+\ex{3.18}
+The goal can be achieved by means of an analog switch of the type of Figure 3.106 B at the input of the circuit. With respect to the circuit of Figure 3.106 B, a resistor $R_2$ with a resistance of \SI{55}{\kilo\ohm} is needed because of the lower $V_\text{logic}$ equal to \SI{3}{\volt}.
